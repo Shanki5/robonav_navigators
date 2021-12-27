@@ -43,3 +43,25 @@ Build all the packages
 ```
 catkin build
 ```
+
+## How to run the simulation and packages
+
+You will have to source the workspace each time you build a new package or if you haven't sourced in the terminal you are working on
+
+```
+source ~/ros_hackathon_ws/devel/setup.bash
+```
+
+Launch the simulation
+
+```
+roslaunch robonav_navigators maze_sim.launch
+```
+
+Run gmapping. This also starts move_base
+
+```
+roslaunch robonav_navigators gmapping.launch
+```
+
+To run scripts using `rosrun robonav_navigators [script name]`. Note that you will have to add executable permission to the script before being able to run it. Do that using `chmod +x [filename]` . Use double tab to see the list of all the scripts in each package for ease of use.
