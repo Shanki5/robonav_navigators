@@ -1,0 +1,8 @@
+<launch>
+
+    <node name="laser_wall_detect" pkg="robonav_navigators" type="laser_wall_detector.py" output="screen"/>
+    
+    <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find robonav_navigators)/config/laser_range_check.rviz"/>
+    
+
+</launch>
