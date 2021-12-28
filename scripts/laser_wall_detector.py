@@ -1,8 +1,14 @@
 #! /usr/bin/env python3
-"""
-Author: Shankrith S
-Email: shankrith1618@gmail.com
-"""
+# -*-coding:utf-8 -*-
+'''
+@File    :   laser_wall_detector.py
+@Time    :   2021/12/28 11:47:12
+@Author  :   Shankrith Chokkalingam S 
+@Version :   1.0
+@Email :   shankrith1618@gmail.com
+@Desc    :   None
+'''
+
 #import ros essentials
 import rospy
 from sensor_msgs.msg import LaserScan
@@ -10,6 +16,10 @@ from sensor_msgs.msg import LaserScan
 import numpy as np
 
 class LaserWallDist:
+    """
+    Class that estimates state of the robot given the laser scan data
+
+    """
 
     LASER_SCAN_TOPIC = rospy.get_param("fetch/laser_scan_topic", "/base_scan")
 
@@ -27,7 +37,7 @@ class LaserWallDist:
     
     def estimate_state(self):
         
-        #TODO: make code work for other 4 regions xD
+        #TODO: make code work for other 2 regions xD
 
         for i in self.regions:
             beta = 0
@@ -41,27 +51,27 @@ class LaserWallDist:
 
             elif i == "LEFT":
                 beta = np.radians(45)
-                ref_ang = np.radians(70)
+                ref_ang = np.radians(80)
                 side = -1
                 self.state[i] = self.calc_dist(beta, ref_ang, side) 
 
             elif i == "RIGHT":
                 beta = np.radians(45)
-                ref_ang = np.radians(70)
+                ref_ang = np.radians(80)
                 side = 1
                 self.state[i] = self.calc_dist(beta, ref_ang, side) 
 
             elif i == "FLEFT":
                 beta = np.radians(30)
-                ref_ang = 50
+                ref_ang = np.radians(50)
                 side = -1
-                # self.state[i] = self.calc_dist(beta, ref_ang, side) 
+                self.state[i] = self.calc_dist(beta, ref_ang, side) 
 
-            # elif i == "FRIGHT":
-            #     beta = np.radians(30)
-            #     ref_ang = 50
-            #     side = 1
-            #     self.state[i] = self.calc_dist(beta, ref_ang, side) 
+            elif i == "FRIGHT":
+                beta = np.radians(30)
+                ref_ang = np.radians(50)
+                side = 1
+                self.state[i] = self.calc_dist(beta, ref_ang, side) 
 
             else:
                 pass
