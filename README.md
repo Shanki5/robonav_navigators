@@ -35,7 +35,7 @@ git clone https://github.com/Shanki5/robonav_navigators.git
 Install all dependencies required by the packages
 
 ```
-cd ~/ros_hackthon_ws && sudo rosdep install --from-paths src --ignore-src -r -y
+cd ~/ros_hackathon_ws && sudo rosdep install --from-paths src --ignore-src -r -y
 ```
 
 Build all the packages
